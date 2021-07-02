@@ -1,0 +1,53 @@
+---
+title: "Belt Tension Calculator Presentation"
+author: "AntChanCPT"
+date: "02/07/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This presentation is the second part to the Developing Data Products module on Coursera. As part of the project, a simple shiny application was made and deployed on [shinyapps.io](https://www.shinyapps.io/). 
+
+This application was a calculator which returned the tension of a drive or timing belt (typically of rubber construction) from user input recorded belt frequency and belt properties.
+
+## Equation and Inputs
+
+The equation used for this calculation came from [Pico Technology](https://www.picoauto.com/library/automotive-guided-tests/belt-tension):
+
+T = 4 * m * l^2 * f^2
+
+where T is the belt tension in N,
+
+m is the mass per unit length in kg/m,
+
+l is the length of the belt span in m,
+
+f is the recorded frequency in Hz.
+
+Since mass per unit length is not usually known, this was simply calculated by dividing the mass by the length of the belt.
+
+## Example
+
+The example below uses the default values in the calculator. With a recorded frequency of 200Hz, belt span of 150mm, belt mass of 120g and belt length of 250mm, the belt tension was determined to be 1728N.
+
+```{r example, echo = TRUE}
+freq <- 200
+span <- 0.150
+mass <- 0.120
+length <- 0.250
+
+tension <- 4 * (mass / length) * span^2 * freq^2
+tension
+```
+
+## Links
+
+* The shiny application can be found [here](https://antchancpt.shinyapps.io/CourseProject/).
+
+* The github repo with the ui.R and server.R files can be found [here](https://github.com/AntChanCPT/BeltTensionCalculator).
+
